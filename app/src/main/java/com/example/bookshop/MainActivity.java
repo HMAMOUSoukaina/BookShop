@@ -1,9 +1,10 @@
 package com.example.bookshop;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,13 +15,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.esuser);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button getStartedButton = findViewById(R.id.btnGetStarted);
+
+        // Set a click listener on the "Get Started" button
+        getStartedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EspaceUtilisateur.class);
-                startActivity(intent);
+                // Redirect to the sign-in page
+                Intent signInIntent = new Intent(MainActivity.this, SignInActivity.class);
+                startActivity(signInIntent);
             }
         });
-
     }
 }
+

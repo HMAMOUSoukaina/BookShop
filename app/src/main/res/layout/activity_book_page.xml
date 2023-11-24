@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black_transparent_background"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="0dp"
+        android:src="@drawable/logo_nbg"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageViewBookCover"
+        android:layout_width="400dp"
+        android:layout_height="310dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="Book Cover"
+        android:cropToPadding="false"
+        android:scaleType="centerInside"
+        android:src="@drawable/book_cover" />
+
+    <LinearLayout
+        android:id="@+id/llBookDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewBookCover"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <!-- Title, Author, and Price -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvBookPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-thin"
+                android:textColor="@color/Bleu"
+                android:text="$19.99"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/buttonFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="250dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/circular_background"
+                android:text=""
+                android:contentDescription="Favorite Button" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvBookTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Book Title"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvBookAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Author Name"
+            android:textSize="16sp" />
+
+
+        <!-- Book Rating, Number of Pages, and Language -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            android:padding="2dp"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvBookrating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:text="Rating"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tvBookpages"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Number of pages"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvBooklanguage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_weight="1"
+                    android:text="Language"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvBookRating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="4.5"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvBookPages"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="300 pages"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvBookLanguage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="English"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Book Description -->
+        <TextView
+            android:id="@+id/tvBookDescription"
+            android:layout_width="380dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="18dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+
+        <!-- Quantity Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvQuantityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Quantity:"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/border_background"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imageViewMinus"
+                    android:layout_width="24dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:adjustViewBounds="false"
+                    android:contentDescription="Minus Icon"
+                    android:cropToPadding="false"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/ic_minus" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/Bleu" />
+
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="20dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="1"
+                    android:textColor="@color/Bleu"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/Bleu" />
+
+                <ImageView
+                    android:id="@+id/imageViewPlus"
+                    android:layout_width="24dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="6dp"
+                    android:contentDescription="Plus Icon"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/ic_plus" />
+
+            </LinearLayout>
+            <!-- Add to Cart Button -->
+            <Button
+                android:id="@+id/btnAddToCart"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="65dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_card"
+                android:minHeight="48dp"
+                android:padding="4dp"
+                android:text="Add to Cart"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
