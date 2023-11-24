@@ -7,19 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-<<<<<<< HEAD
             <value value="C:\Users\Hp\.android\avd\MyEmulator2.avd" />
-=======
-            <value value="C:\Users\pc\.android\avd\Pixel_API_29.avd" />
->>>>>>> origin/master
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-<<<<<<< HEAD
-    <timeTargetWasSelectedWithDropDown value="2023-11-24T10:43:18.417409100Z" />
-=======
-    <timeTargetWasSelectedWithDropDown value="2023-11-18T14:20:51.214978Z" />
->>>>>>> origin/master
+    <timeTargetWasSelectedWithDropDown value="2023-11-24T15:15:17.160803700Z" />
   </component>
 </project>
