@@ -44,6 +44,7 @@ ListView booksLsv;
         setupCategoryButton("Science", scienceButton);
         setupCategoryButton("Literature", literatureButton);
         setupCategoryButton("History", historyButton);
+        setupCategoryButton("Religion", religionButton);
         setupCategoryButton("Philosophy", philosophyButton);
 
 
