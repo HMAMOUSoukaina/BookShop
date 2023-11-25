@@ -2,13 +2,18 @@ package com.example.bookshop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExploreActivity extends AppCompatActivity {
 ListView booksLsv;
@@ -17,17 +22,33 @@ ListView booksLsv;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
 
+        Context context = getApplicationContext();
+        ManualDataInsertion.insertDummyData(context);
 
-        //Travail avec la listView
+
+
         booksLsv = findViewById(R.id.lsvBooks);
-        ArrayList<BookItem> arr = new ArrayList<>();
-        while (arr.size()<10){
-            arr.add(new BookItem());
 
-        }
 
-        BookAdapter adaper = new BookAdapter( this,0,arr);
-        booksLsv.setAdapter(adaper);
+
+        //Listeners des différents bouttons
+        Button artsButton = findViewById(R.id.arts);
+        Button scienceButton = findViewById(R.id.science);
+        Button historyButton = findViewById(R.id.history);
+        Button literatureButton = findViewById(R.id.literature);
+        Button philosophyButton = findViewById(R.id.philosophy);
+        Button religionButton = findViewById(R.id.religion);
+
+
+        setupCategoryButton("Arts", artsButton);
+        setupCategoryButton("Science", scienceButton);
+        setupCategoryButton("Literature", literatureButton);
+        setupCategoryButton("History", historyButton);
+        setupCategoryButton("Philosophy", philosophyButton);
+
+
+
+
 
 
 
@@ -51,4 +72,16 @@ ListView booksLsv;
             return false;
         });
     }
-    }
+
+
+    public void setupCategoryButton(String cat, Button but) {
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BooksBDHelper dbHelper = new BooksBDHelper(getApplicationContext());
+                List<BookItem> books = dbHelper.getBooksByCategory(cat);
+                BookAdapter adapter = new BookAdapter(ExploreActivity.this, books);
+                booksLsv.setAdapter(adapter);
+            }
+        });
+    }}

@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,19 +37,41 @@ public class SignInActivity extends AppCompatActivity {
 
         underlineText(tvSignUp);
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Implement your sign-in logic here
-                Toast.makeText(SignInActivity.this, "Sign In Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+
         tvsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        // Associe un écouteur d'événements au bouton btnSignIn
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Récupère les valeurs entrées par l'utilisateur dans les champs email et password
+                String email = etEmailSignIn.getText().toString();
+                String password = etPasswordSignIn.getText().toString();
+
+                // Instancie un objet BDHelper pour interagir avec la base de données
+                UsersBDHelper db = new UsersBDHelper(SignInActivity.this);
+
+                // Récupère l'utilisateur correspondant à l'adresse e-mail de la base de données
+                User user = db.getUser(email);
+
+                // Vérifie si l'utilisateur existe et si le mot de passe correspond
+                if (user != null && user.getPassword().equals(password)) {
+                    // L'utilisateur existe et le mot de passe est correct, ouvre l'activité EspaceUtilisateur
+                    Intent intent = new Intent(SignInActivity.this, EspaceUtilisateur.class);
+                    startActivity(intent);
+                } else {
+                    // L'utilisateur n'existe pas ou le mot de passe est incorrect
+                    Toast.makeText(SignInActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

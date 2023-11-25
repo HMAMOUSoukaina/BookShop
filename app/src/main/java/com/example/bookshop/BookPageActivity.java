@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookPageActivity extends AppCompatActivity {
-
+/*
     private ImageView imageViewBookCover;
     private TextView tvBookTitle, tvBookAuthor, tvBookPrice, tvBookRating,
             tvBookPages, tvBookLanguage, tvBookDescription, tvQuantity;
@@ -113,4 +113,6 @@ public class BookPageActivity extends AppCompatActivity {
         }
         tvQuantity.setText(String.valueOf(quantity));
     }
+    */
+
 }

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class SignUpActivity extends AppCompatActivity {
 
     private ImageView imageViewLogo;
@@ -49,12 +50,31 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (etPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
+                    User user = new User();
+                    user.setName(etName.getText().toString());
+                    user.setPhone(etPhone.getText().toString());
+                    user.setEmail(etEmail.getText().toString());
+                    user.setPassword(etPassword.getText().toString());
+
+                    UsersBDHelper db = new UsersBDHelper(SignUpActivity.this);
+                    db.addUser(user);
+
+
                     Toast.makeText(SignUpActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
+
+
+
+
+
+
+
 
 
         tvsignin.setOnClickListener(new View.OnClickListener() {
@@ -85,4 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
         Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
         startActivity(intent);
     }
+
+
+
 }

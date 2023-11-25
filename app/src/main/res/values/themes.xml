@@ -2,8 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.BookShop" parent="Theme.Material3.DayNight.NoActionBar">
 
-        <item name="colorPrimary">@color/vertLight</item>
-        <item name="colorPrimaryVariant">@color/vertLight</item>
+
     </style>
 
     <style name="Theme.BookShop" parent="Base.Theme.BookShop" />

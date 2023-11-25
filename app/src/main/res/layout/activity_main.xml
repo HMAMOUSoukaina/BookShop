@@ -46,7 +46,7 @@
         app:layout_constraintVertical_bias="0.059" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/bookTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -69,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/bookTitle" />
 
     <Button
         android:id="@+id/btnGetStarted"

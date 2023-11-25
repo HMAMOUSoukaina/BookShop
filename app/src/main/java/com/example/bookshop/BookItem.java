@@ -5,45 +5,52 @@ import java.io.Serializable;
 public class BookItem implements Serializable {
     private final String title;
     private final int quantity;
-    private final int imageUrl;
+    private final String imagePath; // Remplacé imageUrl par le chemin de l'image
+    public final String author;
+    public final String category;
+    public final double Price ;
 
-   /* public void setTitle(String title) {
-        this.title = title;
-    }
+
 
     public BookItem() {
+        this.title = "Some title";
+        this.quantity = 0;
+        this.imagePath = ""; // Initialisé avec une chaîne vide
+        this.author = "";
+        this.category = "";
+        this.Price=0;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setImageUrl(int imageUrl) {
-        this.imageUrl = imageUrl;
-    }*/
-
-    public BookItem(){
-        this.title="Some title";
-        this.quantity=0;
-        this.imageUrl=1;
-    }
-
-    public BookItem(String title, int quantity, int imageUrl) {
+    public BookItem(String title, int quantity, String imagePath, String author, String category,double Price) {
         this.title = title;
         this.quantity = quantity;
-        this.imageUrl = imageUrl;
+        this.imagePath = imagePath;
+        this.author = author;
+        this.category = category;
+        this.Price=Price;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getCategory() {
+        return category;
+    }
 
     public String getTitle() {
         return title;
+    }
+
+    public double getPrice() {
+        return Price;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public int getImageUrl() {
-        return imageUrl;
+    public String getImagePath() {
+        return imagePath;
     }
 }

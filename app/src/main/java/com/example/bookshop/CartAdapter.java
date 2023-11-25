@@ -13,7 +13,10 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-public class CartAdapter extends ArrayAdapter<BookItem> {
+public class CartAdapter  {
+    //extends ArrayAdapter<BookItem>
+
+    /*
 
     private Context context;
     private List<BookItem> books;
@@ -40,7 +43,7 @@ public class CartAdapter extends ArrayAdapter<BookItem> {
 
         titleTextView.setText(currentItem.getTitle());
         quantityTextView.setText(String.valueOf(currentItem.getQuantity()));
-        bookImageView.setImageResource(currentItem.getImageUrl());
+        bookImageView.setImageResource(currentItem.getImagePath());
 
         // Set long click listener to show the CheckBox and delete icon
         rowView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -69,4 +72,7 @@ public class CartAdapter extends ArrayAdapter<BookItem> {
 
         return rowView;
     }
+
+    */
+
 }
