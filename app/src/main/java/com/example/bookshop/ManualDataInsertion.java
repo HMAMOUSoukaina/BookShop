@@ -20,7 +20,7 @@ public class ManualDataInsertion {
         byte[] imageBytes = convertBitmapToByteArray(bitmap);
 
         // Créez un nouveau BookItem
-        dbHelper.addBook(new BookItem("Titre du livre", 1, imageBytes, "Auteur", "Catégorie", 19.99));
+        dbHelper.addBook(new BookItem("Titre du livre", 1, imageBytes, "Auteur", "Arts", 19.99));
 
 
 
