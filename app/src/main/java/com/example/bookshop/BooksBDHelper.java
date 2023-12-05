@@ -17,31 +17,24 @@ public class BooksBDHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "mybooks.db";
     private static final int DATABASE_VERSION = 2;
 
-
     public static final String COLUMN_PRICE = "Price";
     public static final String TABLE_BOOKS = "books";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TITLE = "title";
-
-    public static final String COLUMN_QUANTITY ="quantity";
+    public static final String COLUMN_QUANTITY = "quantity";
     public static final String COLUMN_AUTHOR = "author";
     public static final String COLUMN_CATEGORY = "category";
     public static final String COLUMN_IMAGE_PATH = "image_path";
 
-
-
-
-
     private static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_BOOKS + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-
                     COLUMN_TITLE + " TEXT, " +
-                    COLUMN_QUANTITY + " INTEGER, "+
+                    COLUMN_QUANTITY + " INTEGER, " +
                     COLUMN_AUTHOR + " TEXT, " +
                     COLUMN_CATEGORY + " TEXT, " +
-                    COLUMN_PRICE + " REAL, "+
-                    COLUMN_IMAGE_PATH + " TEXT);";
+                    COLUMN_PRICE + " REAL, " +
+                    COLUMN_IMAGE_PATH + " BLOB);"; // Changed from TEXT to BLOB
 
     public BooksBDHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -62,11 +55,11 @@ public class BooksBDHelper extends SQLiteOpenHelper {
     public long addBook(BookItem book) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, book.getTitle());
-        values.put(COLUMN_QUANTITY,book.getQuantity());
+        values.put(COLUMN_QUANTITY, book.getQuantity());
         values.put(COLUMN_AUTHOR, book.getAuthor());
         values.put(COLUMN_CATEGORY, book.getCategory());
         values.put(COLUMN_IMAGE_PATH, book.getImagePath());
-        values.put(COLUMN_PRICE,book.getPrice());
+        values.put(COLUMN_PRICE, book.getPrice());
 
         SQLiteDatabase db = this.getWritableDatabase();
         long result = -1;
@@ -106,7 +99,7 @@ public class BooksBDHelper extends SQLiteOpenHelper {
                     int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY));
                     String author = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_AUTHOR));
                     String cat = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY));
-                    String imagePath = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE_PATH));
+                    byte[] imagePath = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE_PATH));
                     double price = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PRICE));
                     BookItem book = new BookItem(title, quantity, imagePath, author, cat, price);
 

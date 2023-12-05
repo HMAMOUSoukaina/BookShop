@@ -5,29 +5,27 @@ import java.io.Serializable;
 public class BookItem implements Serializable {
     private final String title;
     private final int quantity;
-    private final String imagePath; // Remplacé imageUrl par le chemin de l'image
+    private final byte[] imagePath; // Changed from String to byte[]
     public final String author;
     public final String category;
-    public final double Price ;
-
-
+    public final double Price;
 
     public BookItem() {
         this.title = "Some title";
         this.quantity = 0;
-        this.imagePath = ""; // Initialisé avec une chaîne vide
+        this.imagePath = new byte[0]; // Initialize with an empty byte array
         this.author = "";
         this.category = "";
-        this.Price=0;
+        this.Price = 0;
     }
 
-    public BookItem(String title, int quantity, String imagePath, String author, String category,double Price) {
+    public BookItem(String title, int quantity, byte[] imagePath, String author, String category, double Price) {
         this.title = title;
         this.quantity = quantity;
         this.imagePath = imagePath;
         this.author = author;
         this.category = category;
-        this.Price=Price;
+        this.Price = Price;
     }
 
     public String getAuthor() {
@@ -50,7 +48,7 @@ public class BookItem implements Serializable {
         return quantity;
     }
 
-    public String getImagePath() {
+    public byte[] getImagePath() {
         return imagePath;
     }
 }
