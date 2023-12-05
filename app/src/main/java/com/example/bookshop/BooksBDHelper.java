@@ -21,6 +21,8 @@ public class BooksBDHelper extends SQLiteOpenHelper {
 
 
     public static final String COLUMN_PRICE = "Price";
+
+    public static final String COLUMN_DESCRIPTION ="description";
     public static final String TABLE_BOOKS = "books";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TITLE = "title";
@@ -105,7 +107,8 @@ public class BooksBDHelper extends SQLiteOpenHelper {
                     String cat = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY));
                     byte[] imagePath = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE_PATH));
                     double price = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PRICE));
-                    BookItem book = new BookItem(id,title, quantity, imagePath, author, cat, price);
+                    String description = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION));
+                    BookItem book = new BookItem(id,title, quantity, imagePath, author, cat, price,description);
 
                     books.add(book);
                 } while (cursor.moveToNext());

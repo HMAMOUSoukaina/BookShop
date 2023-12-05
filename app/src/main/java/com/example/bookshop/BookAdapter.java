@@ -39,7 +39,7 @@ public class BookAdapter extends ArrayAdapter<BookItem> {
 
         // Set the book image
         ImageView ivBookImage = convertView.findViewById(R.id.bookcover);
-        // Assuming you have a method to convert byte[] to Bitmap
+        
         ivBookImage.setImageBitmap(BitmapUtils.getBitmapFromByteArray(currentBook.getImagePath()));
 
         return convertView;
