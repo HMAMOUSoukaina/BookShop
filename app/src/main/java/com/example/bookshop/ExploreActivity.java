@@ -52,7 +52,7 @@ ListView booksLsv;
 
 
 
-
+        artsButton.performClick();
 
         //Navigation
         BottomNavigationView bott = findViewById(R.id.BottomNavigationView);
