@@ -47,11 +47,15 @@ public class BooksBDHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+
+    //Exécution de la requête de création de la table
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE);
     }
 
+
+    //Mise à jour de la table à chaque fois
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKS);
@@ -61,18 +65,21 @@ public class BooksBDHelper extends SQLiteOpenHelper {
     // Méthode pour ajouter un livre à la base de données
     public long addBook(BookItem book) {
         ContentValues values = new ContentValues();
+        values.put(COLUMN_ID,book.getId());
         values.put(COLUMN_TITLE, book.getTitle());
         values.put(COLUMN_QUANTITY, book.getQuantity());
         values.put(COLUMN_AUTHOR, book.getAuthor());
         values.put(COLUMN_CATEGORY, book.getCategory());
-        values.put(COLUMN_IMAGE_PATH, book.getImagePath());
         values.put(COLUMN_PRICE, book.getPrice());
+        values.put(COLUMN_IMAGE_PATH, book.getImagePath());
         values.put(COLUMN_DESCRIPTION_BOOK,book.getDescription());
 
         SQLiteDatabase db = this.getWritableDatabase();
         long result = -1;
 
         try {
+
+            //Insertion des données dans la table dans la base de données
             result = db.insert(TABLE_BOOKS, null, values);
         } catch (SQLException e) {
             e.printStackTrace();
