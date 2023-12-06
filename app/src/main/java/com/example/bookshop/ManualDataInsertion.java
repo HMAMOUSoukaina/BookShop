@@ -21,6 +21,18 @@ public class ManualDataInsertion {
         addBook(context, dbHelper,6, "The Scream", 4, R.drawable.the_scream, "Edvard Munch", "Arts", 14,"desc");
         addBook(context, dbHelper,7, "The Great Wave of Kanagawa", 10, R.drawable.the_great_wave_of_kanagawa, "Hokusai", "Arts", 14,"desc");
         addBook(context, dbHelper, 8,"The Night Cafe", 10, R.drawable.the_night_cafe, "Vincent van Gogh", "Arts", 14,"desc");
+
+
+        // Catégorie : History
+
+        addBook(context, dbHelper, 9,"The Guns of August", 12, R.drawable.the_guns_of_august, "Friedrich von Bernhardi", "History", 14,"desc");
+        addBook(context, dbHelper,10, "The Rise and Fall of the Third Reich", 22, R.drawable.the_rise_and_fall_of_the_third_reich, "William L. Shirer", "History", 19,"desc");
+        addBook(context, dbHelper,11, "The Time of the Revolutions", 12, R.drawable.the_time_of_the_revolutions, "Daniel de Montplaisir", "History", 15,"desc");
+        addBook(context, dbHelper,12, "In the Shadow of Empires", 24, R.drawable.in_the_shadow_of_empires, "Germain Payen", "History", 16.50,"desc");
+        addBook(context, dbHelper, 13,"The Age of Persia", 20, R.drawable.the_age_of_persia, "Yves Bomati", "History", 17,"desc");
+        addBook(context, dbHelper,14, "Une autre histoire de la Renaissance", 4, R.drawable.une_autre_histoire_de_la_renaissance, "Didier Le Fur", "History", 14,"desc");
+        addBook(context, dbHelper,15, "The Embracing of the World", 10, R.drawable.the_embracing_of_the_world, "Victor Court", "History", 11.99,"desc");
+        addBook(context, dbHelper, 16,"The Scepter and the Pen", 10, R.drawable.the_scepter_and_the_pen, "Bruno de Cessole", "History", 15,"desc");
     }
 
     private static void addBook(Context context, BooksBDHelper dbHelper, int id,String title, int quantity, int imageResource, String author, String category, double price,String description) {

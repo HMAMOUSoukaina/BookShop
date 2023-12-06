@@ -39,7 +39,9 @@ public class BooksBDHelper extends SQLiteOpenHelper {
                     COLUMN_AUTHOR + " TEXT, " +
                     COLUMN_CATEGORY + " TEXT, " +
                     COLUMN_PRICE + " REAL, " +
-                    COLUMN_IMAGE_PATH + " BLOB);"; // Changed from TEXT to BLOB
+                    COLUMN_IMAGE_PATH + " BLOB," +
+                    COLUMN_DESCRIPTION + " TEXT)";
+
 
     public BooksBDHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -65,6 +67,7 @@ public class BooksBDHelper extends SQLiteOpenHelper {
         values.put(COLUMN_CATEGORY, book.getCategory());
         values.put(COLUMN_IMAGE_PATH, book.getImagePath());
         values.put(COLUMN_PRICE, book.getPrice());
+        values.put(COLUMN_DESCRIPTION,book.getDescription());
 
         SQLiteDatabase db = this.getWritableDatabase();
         long result = -1;
