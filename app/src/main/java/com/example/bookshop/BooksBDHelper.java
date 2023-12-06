@@ -22,7 +22,7 @@ public class BooksBDHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_PRICE = "Price";
 
-    public static final String COLUMN_DESCRIPTION ="description";
+    public static final String COLUMN_DESCRIPTION_BOOK ="description";
     public static final String TABLE_BOOKS = "books";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TITLE = "title";
@@ -40,7 +40,7 @@ public class BooksBDHelper extends SQLiteOpenHelper {
                     COLUMN_CATEGORY + " TEXT, " +
                     COLUMN_PRICE + " REAL, " +
                     COLUMN_IMAGE_PATH + " BLOB," +
-                    COLUMN_DESCRIPTION + " TEXT)";
+                    COLUMN_DESCRIPTION_BOOK + " TEXT)";
 
 
     public BooksBDHelper(Context context) {
@@ -67,7 +67,7 @@ public class BooksBDHelper extends SQLiteOpenHelper {
         values.put(COLUMN_CATEGORY, book.getCategory());
         values.put(COLUMN_IMAGE_PATH, book.getImagePath());
         values.put(COLUMN_PRICE, book.getPrice());
-        values.put(COLUMN_DESCRIPTION,book.getDescription());
+        values.put(COLUMN_DESCRIPTION_BOOK,book.getDescription());
 
         SQLiteDatabase db = this.getWritableDatabase();
         long result = -1;
@@ -110,7 +110,7 @@ public class BooksBDHelper extends SQLiteOpenHelper {
                     String cat = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY));
                     byte[] imagePath = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE_PATH));
                     double price = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PRICE));
-                    String description = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION));
+                    String description = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION_BOOK));
                     BookItem book = new BookItem(id,title, quantity, imagePath, author, cat, price,description);
 
                     books.add(book);
