@@ -22,11 +22,13 @@ ListView booksLsv;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
 
+
+        //Insertion des données dans la base de données
         Context context = getApplicationContext();
         ManualDataInsertion.insertDummyData(context);
 
 
-
+//Récupération de la listeView
         booksLsv = findViewById(R.id.lsvBooks);
 
 

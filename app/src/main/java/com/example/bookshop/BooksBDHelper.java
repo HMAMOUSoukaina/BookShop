@@ -21,8 +21,6 @@ public class BooksBDHelper extends SQLiteOpenHelper {
 
 
     public static final String COLUMN_PRICE = "Price";
-
-    public static final String COLUMN_DESCRIPTION_BOOK ="description";
     public static final String TABLE_BOOKS = "books";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TITLE = "title";
@@ -39,23 +37,17 @@ public class BooksBDHelper extends SQLiteOpenHelper {
                     COLUMN_AUTHOR + " TEXT, " +
                     COLUMN_CATEGORY + " TEXT, " +
                     COLUMN_PRICE + " REAL, " +
-                    COLUMN_IMAGE_PATH + " BLOB," +
-                    COLUMN_DESCRIPTION_BOOK + " TEXT)";
-
+                    COLUMN_IMAGE_PATH + " BLOB);"; // Changed from TEXT to BLOB
 
     public BooksBDHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
-    //Exécution de la requête de création de la table
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE);
     }
 
-
-    //Mise à jour de la table à chaque fois
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKS);
@@ -65,21 +57,17 @@ public class BooksBDHelper extends SQLiteOpenHelper {
     // Méthode pour ajouter un livre à la base de données
     public long addBook(BookItem book) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_ID,book.getId());
         values.put(COLUMN_TITLE, book.getTitle());
         values.put(COLUMN_QUANTITY, book.getQuantity());
         values.put(COLUMN_AUTHOR, book.getAuthor());
         values.put(COLUMN_CATEGORY, book.getCategory());
-        values.put(COLUMN_PRICE, book.getPrice());
         values.put(COLUMN_IMAGE_PATH, book.getImagePath());
-        values.put(COLUMN_DESCRIPTION_BOOK,book.getDescription());
+        values.put(COLUMN_PRICE, book.getPrice());
 
         SQLiteDatabase db = this.getWritableDatabase();
         long result = -1;
 
         try {
-
-            //Insertion des données dans la table dans la base de données
             result = db.insert(TABLE_BOOKS, null, values);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -117,8 +105,7 @@ public class BooksBDHelper extends SQLiteOpenHelper {
                     String cat = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY));
                     byte[] imagePath = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE_PATH));
                     double price = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PRICE));
-                    String description = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION_BOOK));
-                    BookItem book = new BookItem(id,title, quantity, imagePath, author, cat, price,description);
+                    BookItem book = new BookItem(id,title, quantity, imagePath, author, cat, price);
 
                     books.add(book);
                 } while (cursor.moveToNext());
@@ -133,5 +120,88 @@ public class BooksBDHelper extends SQLiteOpenHelper {
         }
 
         return books;
+    }
+
+
+    // Méthode pour récupérer tous les livres dans la base de données
+    public List<BookItem> getAllBooks() {
+        List<BookItem> books = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        try {
+            cursor = db.query(
+                    TABLE_BOOKS,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+                    String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
+                    int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY));
+                    String author = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_AUTHOR));
+                    String cat = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY));
+                    byte[] imagePath = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE_PATH));
+                    double price = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PRICE));
+                    BookItem book = new BookItem(id, title, quantity, imagePath, author, cat, price);
+
+                    books.add(book);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+
+        return books;
+    }
+
+    // Méthode pour récupérer un livre par son ID
+    public BookItem getBookById(int bookId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        BookItem book = null;
+
+        try {
+            cursor = db.query(
+                    TABLE_BOOKS,
+                    null,
+                    COLUMN_ID + "=?",
+                    new String[]{String.valueOf(bookId)},
+                    null,
+                    null,
+                    null
+            );
+
+            if (cursor != null && cursor.moveToFirst()) {
+                String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
+                int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY));
+                String author = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_AUTHOR));
+                String cat = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY));
+                byte[] imagePath = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE_PATH));
+                double price = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PRICE));
+                book = new BookItem(bookId, title, quantity, imagePath, author, cat, price);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+
+        return book;
     }
 }

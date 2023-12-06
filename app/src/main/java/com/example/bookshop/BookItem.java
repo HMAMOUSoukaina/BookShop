@@ -8,11 +8,8 @@ public class BookItem implements Serializable {
     private final int quantity;
     private final byte[] imagePath; // Changed from String to byte[]
     public final String author;
-    public final String Description;
     public final String category;
     public final double Price;
-
-
 
     public BookItem() {
         this.title = "Some title";
@@ -22,10 +19,9 @@ public class BookItem implements Serializable {
         this.category = "";
         this.Price = 0;
         this.id=0;
-        this.Description="";
     }
 
-    public BookItem(int id,String title, int quantity, byte[] imagePath, String author, String category, double Price,String desc) {
+    public BookItem(int id,String title, int quantity, byte[] imagePath, String author, String category, double Price) {
         this.title = title;
         this.quantity = quantity;
         this.imagePath = imagePath;
@@ -33,7 +29,6 @@ public class BookItem implements Serializable {
         this.category = category;
         this.Price = Price;
         this.id=id;
-        this.Description=desc;
     }
 
     public String getAuthor() {
@@ -48,10 +43,6 @@ public class BookItem implements Serializable {
         return title;
     }
 
-
-    public String getDescription(){
-        return Description;
-    }
 
     public int getId(){
         return id;
