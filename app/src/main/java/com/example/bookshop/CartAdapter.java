@@ -13,10 +13,7 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-public class CartAdapter  {
-    //extends ArrayAdapter<BookItem>
-
-    /*
+public class CartAdapter extends ArrayAdapter<BookItem> {
 
     private Context context;
     private List<BookItem> books;
@@ -39,11 +36,11 @@ public class CartAdapter  {
         CheckBox checkBox = rowView.findViewById(R.id.checkBox);
         ImageView deleteIcon = rowView.findViewById(R.id.deleteIcon);
 
-        BookItem currentItem = getItem(position);
+        BookItem currentBook = getItem(position);
 
-        titleTextView.setText(currentItem.getTitle());
-        quantityTextView.setText(String.valueOf(currentItem.getQuantity()));
-        bookImageView.setImageResource(currentItem.getImagePath());
+        titleTextView.setText(currentBook.getTitle());
+        quantityTextView.setText(String.valueOf(currentBook.getQuantity()));
+        bookImageView.setImageBitmap(BitmapUtils.getBitmapFromByteArray(currentBook.getImagePath()));
 
         // Set long click listener to show the CheckBox and delete icon
         rowView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -60,7 +57,7 @@ public class CartAdapter  {
             @Override
             public void onClick(View v) {
                 // Delete the item from the list
-                remove(currentItem);
+                remove(currentBook);
                 notifyDataSetChanged();
             }
         });
@@ -72,7 +69,4 @@ public class CartAdapter  {
 
         return rowView;
     }
-
-    */
-
 }

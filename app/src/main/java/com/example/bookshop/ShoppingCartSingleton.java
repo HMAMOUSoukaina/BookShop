@@ -1,6 +1,5 @@
 package com.example.bookshop;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,4 +23,3 @@ public class ShoppingCartSingleton {
         shoppingCart.add(bookItem);
     }
 }
-

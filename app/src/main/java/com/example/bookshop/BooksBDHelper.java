@@ -204,4 +204,37 @@ public class BooksBDHelper extends SQLiteOpenHelper {
 
         return book;
     }
+
+    // Méthode pour récupérer l'image d'un livre par son ID en tant que tableau de bytes
+    public byte[] getBookImageById(BookItem book) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        byte[] imagePath = null;
+
+        try {
+            cursor = db.query(
+                    TABLE_BOOKS,
+                    new String[]{COLUMN_IMAGE_PATH},
+                    COLUMN_ID + "=?",
+                    new String[]{String.valueOf(book.getId())}, // Utilisez l'ID du livre
+                    null,
+                    null,
+                    null
+            );
+
+            if (cursor != null && cursor.moveToFirst()) {
+                imagePath = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE_PATH));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+
+        return imagePath;
+    }
+
 }

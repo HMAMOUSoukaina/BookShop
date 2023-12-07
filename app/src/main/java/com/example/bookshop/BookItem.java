@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class BookItem implements Serializable {
     private final String title;
-    private final int id;
+    private final long id;
     private final int quantity;
     private final byte[] imagePath; // Changed from String to byte[]
     public final String author;
@@ -15,6 +15,16 @@ public class BookItem implements Serializable {
         this.title = "Some title";
         this.quantity = 0;
         this.imagePath = new byte[0]; // Initialize with an empty byte array
+        this.author = "";
+        this.category = "";
+        this.Price = 0;
+        this.id=0;
+    }
+
+    public BookItem(String title, int quantity, byte[] imagePath) {
+        this.title = title;
+        this.quantity = quantity;
+        this.imagePath = imagePath; // Initialize with an empty byte array
         this.author = "";
         this.category = "";
         this.Price = 0;
@@ -44,7 +54,7 @@ public class BookItem implements Serializable {
     }
 
 
-    public int getId(){
+    public long getId(){
         return id;
     }
 

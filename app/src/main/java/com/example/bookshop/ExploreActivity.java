@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExploreActivity extends AppCompatActivity {
-ListView booksLsv;
+    ListView booksLsv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +30,25 @@ ListView booksLsv;
 
 //Récupération de la listeView
         booksLsv = findViewById(R.id.lsvBooks);
+
+
+        booksLsv.setOnItemClickListener((parent, view, position, id) -> {
+            // Get the selected BookItem
+            BookItem selectedBook = (BookItem) parent.getItemAtPosition(position);
+
+            // Create an Intent to start the BookPageActivity
+            Intent bookPageIntent = new Intent(ExploreActivity.this, BookPageActivity.class);
+
+            // Pass the selected book details to BookPageActivity
+            bookPageIntent.putExtra("bookId", selectedBook.getId());
+            bookPageIntent.putExtra("bookTitle", selectedBook.getTitle());
+            bookPageIntent.putExtra("bookAuthor", selectedBook.getAuthor());
+            bookPageIntent.putExtra("bookPrice", selectedBook.getPrice());
+
+            // Start the BookPageActivity
+            startActivity(bookPageIntent);
+        });
+
 
 
 

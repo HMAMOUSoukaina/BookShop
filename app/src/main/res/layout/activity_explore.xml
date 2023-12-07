@@ -37,7 +37,7 @@
         android:layout_marginTop="38dp"
         android:layout_marginEnd="26dp"
         android:layout_toStartOf="@+id/imageView"
-        android:fontFamily="serif"
+
         android:text="Explore Books"
         android:textColor="@color/Bleu"
         android:textSize="22dp"
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="serif"
+
                 android:text="Arts"
                 android:textColor="@drawable/button_selector" />
 
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="serif"
+
                 android:text="Literature"
                 android:textColor="@drawable/button_selector" />
 
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="serif"
+
                 android:text="History"
                 android:textColor="@drawable/button_selector" />
 
@@ -95,7 +95,7 @@
                 android:id="@+id/philosophy"
                 android:layout_height="30dp"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="serif"
+
                 android:text="Philosophy"
                 android:textColor="@drawable/button_selector" />
 
@@ -105,7 +105,7 @@
                 android:id="@+id/religion"
                 android:layout_height="30dp"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="serif"
+
                 android:text="Religion"
                 android:textColor="@drawable/button_selector" />
 
@@ -115,7 +115,7 @@
                 android:layout_height="30dp"
                 android:id="@+id/science"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="serif"
+
                 android:text="Science"
                 android:textColor="@drawable/button_selector" />
 

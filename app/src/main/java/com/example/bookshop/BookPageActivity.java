@@ -1,11 +1,12 @@
 package com.example.bookshop;
 
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
+
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.View;
+
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,23 +14,27 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
+
+
 
 public class BookPageActivity extends AppCompatActivity {
-/*
+
+
     private ImageView imageViewBookCover;
     private TextView tvBookTitle, tvBookAuthor, tvBookPrice, tvBookRating,
-            tvBookPages, tvBookLanguage, tvBookDescription, tvQuantity;
-    private Button btnAddToCart, favoriteButton;
-    private int quantity = 1; // Initial quantity
-    private List<BookItem> shoppingCart = new ArrayList<>();
+            tvBookPages, tvBookLanguage, tvBookDescription, tvQuantity, tvBookCategory;
+    private Button btnAddToCart;
+    private int quantity = 1;
 
+
+    private byte[] bookImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_page);
+
+
 
         // Initialize views
         imageViewBookCover = findViewById(R.id.imageViewBookCover);
@@ -38,68 +43,66 @@ public class BookPageActivity extends AppCompatActivity {
         tvBookPrice = findViewById(R.id.tvBookPrice);
         tvBookRating = findViewById(R.id.tvBookRating);
         tvBookPages = findViewById(R.id.tvBookPages);
+        tvBookCategory = findViewById(R.id.tvBookCategory);
         tvBookLanguage = findViewById(R.id.tvBookLanguage);
         tvBookDescription = findViewById(R.id.tvBookDescription);
         tvQuantity = findViewById(R.id.tvQuantity);
         btnAddToCart = findViewById(R.id.btnAddToCart);
-        favoriteButton = findViewById(R.id.buttonFavorite);
 
-        // Set dummy data (replace with actual book data)
-        imageViewBookCover.setImageResource(R.drawable.book_cover); // Replace with actual image resource
-        tvBookTitle.setText("Book Title");
-        tvBookAuthor.setText("Author Name");
-        tvBookPrice.setText("$19.99");
-        tvBookRating.setText("4.5");
-        tvBookPages.setText("300 pages");
-        tvBookLanguage.setText("English");
-        tvBookDescription.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        // Get the BookItem passed from ExploreActivity
+        Intent intent = getIntent();
+        if (intent.hasExtra("bookId")) {
+            long bookId = intent.getLongExtra("bookId", -1);
 
+            // Retrieve book details from the database
+            BooksBDHelper dbHelper = new BooksBDHelper(this);
+            BookItem bookItem = dbHelper.getBookById((int) bookId);
+            bookImage = dbHelper.getBookImageById(bookItem);
 
+            // Set the views with book details
+            if (bookItem != null) {
+                // Load image using BitmapUtils
+                Bitmap bookCoverBitmap = BitmapUtils.getBitmapFromByteArray(bookItem.getImagePath());
+                imageViewBookCover.setImageBitmap(bookCoverBitmap);
+                tvBookTitle.setText(bookItem.getTitle());
+                tvBookAuthor.setText(bookItem.getAuthor());
+                tvBookPrice.setText(bookItem.getPrice()+"$");
+                tvBookCategory.setText(bookItem.getCategory());
+                tvBookRating.setText("4.5");  // Replace with actual rating
+                tvBookPages.setText("300 pages");  // Replace with actual page count
+                tvBookLanguage.setText("English");  // Replace with actual language
+                tvBookDescription.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+            }
+        }
 
         // Minus button click listener
         ImageView imageViewMinus = findViewById(R.id.imageViewMinus);
-        imageViewMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(false);
-            }
-        });
+        imageViewMinus.setOnClickListener(v -> updateQuantity(false));
 
         // Plus button click listener
+
         ImageView imageViewPlus = findViewById(R.id.imageViewPlus);
-        imageViewPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateQuantity(true);
-            }
-        });
+        imageViewPlus.setOnClickListener(v -> updateQuantity(true));
+
 
         // Add to Cart button click listener
-        // Inside the btnAddToCart.setOnClickListener
-        btnAddToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create a BookItem with the book details
-                BookItem bookItem = new BookItem(
-                        tvBookTitle.getText().toString(),
-                        quantity,
-                        R.drawable.book_cover // Replace with your actual image resource
-                );
+        btnAddToCart.setOnClickListener(v -> {
 
-                // Add the BookItem to the shopping cart
-                ShoppingCartSingleton.getInstance().addToCart(bookItem);
 
-                // Create an Intent to start the CartActivity
-                Intent cartIntent = new Intent(BookPageActivity.this, Cart_Activity.class);
+            // Create a BookItem with the book details
+            BookItem bookItem = new BookItem(
 
-                // Start the CartActivity
-                startActivity(cartIntent);
+                    tvBookTitle.getText().toString(),
+                    quantity,
+                    bookImage // Replace with your actual image resource
+            );
 
-                // You can display a toast or perform other actions to indicate successful addition
-                Toast.makeText(BookPageActivity.this, "Added to Cart", Toast.LENGTH_SHORT).show();
-            }
+            // Add the BookItem to the shopping cart
+            ShoppingCartSingleton.getInstance().addToCart(bookItem);
+
+            // Display a toast indicating successful addition to cart
+            Toast.makeText(this, "Added to Cart", Toast.LENGTH_SHORT).show();
         });
-
     }
 
     private void updateQuantity(boolean increment) {
@@ -113,6 +116,7 @@ public class BookPageActivity extends AppCompatActivity {
         }
         tvQuantity.setText(String.valueOf(quantity));
     }
-    */
+
+
 
 }
