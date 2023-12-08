@@ -30,8 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tvcarttitle"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="90dp"
         android:divider="#000000"
         android:dividerHeight="1dp"
         android:visibility="gone" />
@@ -51,9 +51,31 @@
         android:id="@+id/btncacktohome"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_card"
         android:text="Back to Home" />
+
+
+    <com.stripe.android.view.CardInputWidget
+        android:id="@+id/cardInputWidget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp" />
+
+    <Button
+        android:id="@+id/btnPayer"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toEndOf="@+id/btncacktohome"
+        android:background="@drawable/button_card"
+        android:text="Pay" />
 </RelativeLayout>

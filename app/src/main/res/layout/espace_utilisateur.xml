@@ -1,35 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanCasse"
-    tools:context=".EspaceUtilisateur">
+    android:orientation="vertical">
 
+    <!-- Image et texte Welcome -->
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        app:srcCompat="@drawable/logo_nbg" />
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <TextView
+        android:id="@+id/textViewUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/BottomNavigationView"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_background"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:textColor="@color/Bleu"
+        android:gravity="center"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/elevate_your_brain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Elevate your brain"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textColor="@color/vertDark"
+        android:gravity="center"
+        android:padding="8dp" />
+
+    <!-- Layout contenant l'image et le texte -->
+    <LinearLayout
+        android:id="@+id/linear_layout_example"
+        android:layout_width="350dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:background="@drawable/orange_light_banner"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- ImageView -->
+
+        <!-- TextView -->
+
+        <ImageView
+            android:id="@+id/imageViewExample"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/book_illustration" />
+
+        <LinearLayout
+            android:id="@+id/vertical_layout_example"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:gravity="center">
+
+            <!-- TextView "New Books" -->
+            <TextView
+                android:id="@+id/textViewNewBooks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Books"
+                android:textColor="@color/Bleu"
+                android:textStyle="bold"
+                android:textSize="24sp" />
+
+            <!-- TextView "Every Week" -->
+            <TextView
+                android:id="@+id/textViewEveryWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="every week"
+                android:textColor="@color/Bleu"
+                android:textStyle="italic"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- TextView "all_books" au-dessus de la ListView -->
+    <TextView
+        android:id="@+id/all_books"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All books available :"
+        android:textColor="@color/Bleu"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp"
-        android:elevation="2dp"
-        app:menu="@menu/bottom_menu"
-        app:itemIconSize="30dp"
-        app:itemRippleColor="@android:color/transparent"
-        app:itemIconTint="@drawable/item_selector"
-        app:itemBackground="@android:color/transparent"
-        app:labelVisibilityMode="unlabeled"
+        android:layout_marginBottom="10dp"
+        android:textSize="18sp" />
 
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-</RelativeLayout>
+        <!-- ListView -->
+        <ListView
+            android:id="@+id/booksListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/BottomNavigationView"
+            android:layout_marginTop="8dp" />
+
+        <!-- BottomNavigationView -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/BottomNavigationView"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_background"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:elevation="2dp"
+            app:menu="@menu/bottom_menu"
+            app:itemIconSize="30dp"
+            app:itemRippleColor="@android:color/transparent"
+            app:itemIconTint="@drawable/item_selector"
+            app:itemBackground="@android:color/transparent"
+            app:labelVisibilityMode="unlabeled" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+
 
 
 

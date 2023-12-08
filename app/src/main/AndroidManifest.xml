@@ -30,6 +30,8 @@
         <activity android:name=".SignUpActivity"></activity>
 
         <activity android:name=".BookPageActivity"></activity>
-    </application>
 
+
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

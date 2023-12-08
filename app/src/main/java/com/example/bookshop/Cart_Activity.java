@@ -1,54 +1,69 @@
 package com.example.bookshop;
 
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.stripe.android.ApiResultCallback;
+import com.stripe.android.PaymentConfiguration;
+import com.stripe.android.Stripe;
+import com.stripe.android.model.Token;
+import com.stripe.android.view.CardInputWidget;
+
+import java.io.IOException;
 import java.util.List;
 
-import android.content.Intent;
+import okhttp3.Call;
+import okhttp3.Callback;
+import retrofit2.Response;
 
 public class Cart_Activity extends AppCompatActivity {
+    private Stripe stripe;
+    private CardInputWidget cardInputWidget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        // Retrieve the shopping cart data from the singleton
+        // Récupérer les données du panier depuis le singleton
         List<BookItem> itemList = ShoppingCartSingleton.getInstance().getShoppingCart();
 
-        // Get references to views
+        // Obtenir les références des vues
         ListView listView = findViewById(R.id.listviewcart);
         Button backToHomeButton = findViewById(R.id.btncacktohome);
+        Button payButton = findViewById(R.id.btnPayer);
         TextView emptyCartTextView = findViewById(R.id.tvemptycart);
         TextView cartTitleTextView = findViewById(R.id.tvcarttitle);
 
-        // Set the cart title
-        cartTitleTextView.setText("Shopping Cart");
+        // Définir le titre du panier
+        cartTitleTextView.setText("Panier d'achat");
 
-        // Initialize the custom adapter with the item list
+        // Initialiser l'adaptateur personnalisé avec la liste d'articles
         CartAdapter adapter = new CartAdapter(this, itemList);
 
-        // Get a reference to the ListView and set the adapter to it
+        // Obtenir une référence de la ListView et définir l'adaptateur
         listView.setAdapter(adapter);
 
-        // Set the visibility of ListView and empty cart message based on the cart content
+        // Définir la visibilité de la ListView et du message de panier vide en fonction du contenu du panier
         if (itemList != null && !itemList.isEmpty()) {
-            // Cart is not empty, show the ListView and hide the empty cart message
+            // Le panier n'est pas vide, afficher la ListView et masquer le message de panier vide
             listView.setVisibility(View.VISIBLE);
             emptyCartTextView.setVisibility(View.GONE);
         } else {
-            // Cart is empty, hide the ListView and show the empty cart message
+            // Le panier est vide, masquer la ListView et afficher le message de panier vide
             listView.setVisibility(View.GONE);
             emptyCartTextView.setVisibility(View.VISIBLE);
         }
 
-        // Set the click listener for the "Back to Home" button
+        // Définir le gestionnaire de clic pour le bouton "Retour à l'accueil"
         backToHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +71,64 @@ public class Cart_Activity extends AppCompatActivity {
                 startActivity(homeIntent);
             }
         });
+
+        PaymentConfiguration.init(getApplicationContext(), "pk_test_51OL2YBBXngEF9Vjjw6GlH69bAI1HWjjH3sJmAzflGNsbJhcCnP3C78I8x7R4kKYkXKvUCmKxGazRTm3boGSShb8m00OPmelNHl");
+
+        stripe = new Stripe(getApplicationContext(),"pk_test_51OL2YBBXngEF9Vjjw6GlH69bAI1HWjjH3sJmAzflGNsbJhcCnP3C78I8x7R4kKYkXKvUCmKxGazRTm3boGSShb8m00OPmelNHl");
+
+        cardInputWidget = findViewById(R.id.cardInputWidget);
+
+        payButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                payerAvecCarte();
+            }
+        });
     }
+
+    private void payerAvecCarte() {
+        stripe.createCardToken(
+                cardInputWidget.getCardParams(),
+                new ApiResultCallback<Token>() {
+                    @Override
+                    public void onSuccess(Token result) {
+                        // Utilisez result.getId() pour obtenir le jeton de paiement
+                        String tokenId = result.getId();
+                        // Envoyez le tokenId à votre serveur pour traiter le paiement
+                        // TODO: Envoyez le tokenId à votre serveur
+                        // Vous devez traiter le paiement côté serveur pour des raisons de sécurité
+                        Toast.makeText(Cart_Activity.this, "Paiement réussi", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        // Handle error
+                        Toast.makeText(Cart_Activity.this, "Erreur : " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+    }
+
+    private class TokenCallback implements retrofit2.Callback<Token> {
+        @Override
+        public void onResponse(@NonNull retrofit2.Call<Token> call, @NonNull Response<Token> response) {
+            if (response.isSuccessful()) {
+                // Utilisez response.body().getId() pour obtenir le jeton de paiement
+                String tokenId = response.body().getId();
+                // Envoyez le tokenId à votre serveur pour traiter le paiement
+
+
+
+                Toast.makeText(Cart_Activity.this, "Paiement réussi", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(Cart_Activity.this, "Échec du paiement", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onFailure(@NonNull retrofit2.Call<Token> call, @NonNull Throwable t) {
+            Toast.makeText(Cart_Activity.this, "Erreur : " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
-
-
-

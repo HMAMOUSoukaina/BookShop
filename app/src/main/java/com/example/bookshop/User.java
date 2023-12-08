@@ -1,5 +1,7 @@
 package com.example.bookshop;
 
+import static okhttp3.internal.Internal.instance;
+
 public class User {
     private String name;
     private String phone;
@@ -20,6 +22,7 @@ public class User {
     public User(){
         //Default constructor
     }
+
 
 
     // Getters and setters
