@@ -72,63 +72,22 @@ public class Cart_Activity extends AppCompatActivity {
             }
         });
 
-        PaymentConfiguration.init(getApplicationContext(), "pk_test_51OL2YBBXngEF9Vjjw6GlH69bAI1HWjjH3sJmAzflGNsbJhcCnP3C78I8x7R4kKYkXKvUCmKxGazRTm3boGSShb8m00OPmelNHl");
 
-        stripe = new Stripe(getApplicationContext(),"pk_test_51OL2YBBXngEF9Vjjw6GlH69bAI1HWjjH3sJmAzflGNsbJhcCnP3C78I8x7R4kKYkXKvUCmKxGazRTm3boGSShb8m00OPmelNHl");
+        payButton.setOnClickListener(new View.OnClickListener(){
 
-        cardInputWidget = findViewById(R.id.cardInputWidget);
-
-        payButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                payerAvecCarte();
+            public void onClick(View v) {
+                Intent paymentIntent = new Intent(Cart_Activity.this, PaymentActivity.class);
+                startActivity(paymentIntent);
             }
         });
+
     }
 
-    private void payerAvecCarte() {
-        stripe.createCardToken(
-                cardInputWidget.getCardParams(),
-                new ApiResultCallback<Token>() {
-                    @Override
-                    public void onSuccess(Token result) {
-                        // Utilisez result.getId() pour obtenir le jeton de paiement
-                        String tokenId = result.getId();
-                        // Envoyez le tokenId à votre serveur pour traiter le paiement
-                        // TODO: Envoyez le tokenId à votre serveur
-                        // Vous devez traiter le paiement côté serveur pour des raisons de sécurité
-                        Toast.makeText(Cart_Activity.this, "Paiement réussi", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        // Handle error
-                        Toast.makeText(Cart_Activity.this, "Erreur : " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
-    }
-
-    private class TokenCallback implements retrofit2.Callback<Token> {
-        @Override
-        public void onResponse(@NonNull retrofit2.Call<Token> call, @NonNull Response<Token> response) {
-            if (response.isSuccessful()) {
-                // Utilisez response.body().getId() pour obtenir le jeton de paiement
-                String tokenId = response.body().getId();
-                // Envoyez le tokenId à votre serveur pour traiter le paiement
 
 
 
-                Toast.makeText(Cart_Activity.this, "Paiement réussi", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(Cart_Activity.this, "Échec du paiement", Toast.LENGTH_SHORT).show();
-            }
-        }
 
-        @Override
-        public void onFailure(@NonNull retrofit2.Call<Token> call, @NonNull Throwable t) {
-            Toast.makeText(Cart_Activity.this, "Erreur : " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
+
 
 }

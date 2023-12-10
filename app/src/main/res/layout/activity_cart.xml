@@ -58,14 +58,6 @@
         android:background="@drawable/button_card"
         android:text="Back to Home" />
 
-
-    <com.stripe.android.view.CardInputWidget
-        android:id="@+id/cardInputWidget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp" />
-
     <Button
         android:id="@+id/btnPayer"
         android:layout_width="150dp"
@@ -77,5 +69,7 @@
         android:layout_marginBottom="16dp"
         android:layout_toEndOf="@+id/btncacktohome"
         android:background="@drawable/button_card"
-        android:text="Pay" />
+        android:text="Payer" />
+
+
 </RelativeLayout>
