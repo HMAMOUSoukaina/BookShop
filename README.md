@@ -1,4 +1,4 @@
-# Projet : Application mobile d’achats de livres
+# Application mobile d’achats de livres
 
 ## Description
 
