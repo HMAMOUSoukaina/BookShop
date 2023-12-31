@@ -1,6 +1,5 @@
 # Application mobile d’achats de livres
 
-## Description
 
 Bienvenue dans le référentiel de notre projet "Application mobile d’achats de livres". Cette application a été développée dans le cadre d'un projet visant à fournir une expérience utilisateur conviviale pour l'achat de livres en ligne. L'application offre un système d'authentification sécurisé et permet aux utilisateurs de parcourir des livres classés par catégories. De plus, elle propose un processus de paiement en ligne intégré avec le système de paiement Stripe.
 
